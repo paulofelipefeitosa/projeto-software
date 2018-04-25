@@ -30,9 +30,11 @@ function submitMsgForm() {
 		created_at: "Pending",
 		credentials: credential
 	};
+	
 	mensagens.push(mensagem);
 	update_view();
-	doPostRequestForBackend(mensagem)
+	doPostRequestForBackend(mensagem);
+
 	alert("Cadastramento de Mensagem Submetido" + "\n" + 
 		"Título: " + mensagem.title + "\n" + 
 		"Autor: " + mensagem.author + "\n" + 
