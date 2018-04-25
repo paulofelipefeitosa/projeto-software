@@ -20,11 +20,15 @@ function submitMsgForm() {
 	const formTitle = document.getElementById('cadastro_msg_title').value;
 	const formAuthor = document.getElementById('cadastro_msg_autor').value;
 	const formMsg = document.getElementById('cadastro_msg_mensagem').value;
-	var mensagem = {
-		title : formTitle, 
-		author : formAuthor, 
+	const formUserId = document.getElementById('cadastro_authentication_id').value;
+	const formUserPassword = document.getElementById('cadastro_authentication_password').value;
+	const credential = formUserId + ":" + formUserPassword;
+	const mensagem = {
+		title: formTitle, 
+		author: formAuthor, 
 		msg: formMsg,
-		created_at: "Pending"
+		created_at: "Pending",
+		credentials: credential
 	};
 	mensagens.push(mensagem);
 	update_view();
@@ -36,19 +40,16 @@ function submitMsgForm() {
 }
 
 function doPostRequestForBackend(message) {
-	// get user credentials to send in the HTTP POST
 	fetch(backendURI + '/api/msgs', {
 		method: "POST",
-		body: message
+		body: JSON.stringify(message)
 	})
 	.then(function (r) {
 		if(r.status == 200 || r.status == 201) {
-			alert("Criação da Mensagem\n" + JSON.stringify(message) + "\n Criada");
-			r.json().then(data => {
-				alert(JSON.stringify(data));
-			});
+			alert("Mensagem " + message.title + " Criada");
 		} else {
-			alert("Criação da Mensagem\n" + JSON.stringify(message) + "\n Falhou");
+			alert("Criação da Mensagem " + message.title + " Falhou" + 
+				"\nStatus Code: " + r.status);
 		}
 	})
 }
