@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+	table {
+	    font-family: arial, sans-serif;
+	    border-collapse: collapse;
+	    width: 100%;
+	}
+
+	td, th {
+	    border: 1px solid #dddddd;
+	    text-align: left;
+	    padding: 8px;
+	}
+
+	tr:nth-child(even) {
+	    background-color: #dddddd;
+	}
+  </style>
+</head>
+<body>
+  <small><p><a href="/api">API</a> | <a href="http://bit.ly/muralps">Documentação</a></p></small>
+  <hr>
+  <h1>Mural Projeto de Software</h1>
+  <div id="listagem"></div>
+  <script src="cliente.js"></script>
+  <h1>Cadastramento de Mensagem</h1>
+  <div id="cadastro_msg"></div>
+  <form src="cliente.js" onsubmit="submitMsgForm();" id="cadastro_form">
+  	<fieldset>
+  		<legend>Cadastramento de Mensagem no Mural</legend>
+  		Título:<br><input type="text" id="cadastro_msg_title" name="titulo"><br>
+  		Autor:<br><input type="text" id="cadastro_msg_autor" name="autor"><br>
+  		Mensagem:<br><input type="text" id="cadastro_msg_mensagem" name="msg"><br>
+  	<br><input type="submit" value="Enviar">
+  	</fieldset>
+  </form>
+</body>
+</html>
