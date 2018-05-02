@@ -5,10 +5,18 @@ const backendURI = 'http://150.165.85.16:9900';
 getMsgs();
 
 function update_view() {
-    const items = mensagens.map(e => `<tr> <td> <input type="checkbox" name="message_checkbox" value="${e.id}">
+	mensagens.sort(function (a, b) {
+		if(a.created_at > b.created_at) {
+			return -1;
+		} else if(a.created_at < b.created_at) {
+			return 1;
+		}
+		return 0;
+	})
+  const items = mensagens.map(e => `<tr> <td> <input type="checkbox" name="message_checkbox" value="${e.id}">
 																			</td> <td>${e.title}</td> <td>${e.msg}</td> <td>${e.author}</td>
 																			<td>${e.created_at}</td> </tr>`).join("\n");
-    listagem_view.innerHTML = items;
+  listagem_view.innerHTML = items;
 }
 
 function submitMsg() {
