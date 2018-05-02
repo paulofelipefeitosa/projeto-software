@@ -25,20 +25,44 @@
   <small><p><a href="/api">API</a> | <a href="http://bit.ly/muralps">Documentação</a></p></small>
   <hr>
   <h1>Mural Projeto de Software</h1>
-  <div id="listagem"></div>
-  <script src="cliente.js"></script>
   <h1>Cadastramento de Mensagem</h1>
-  <div id="cadastro_msg"></div>
-  <form src="cliente.js" onsubmit="submitMsgForm();" id="cadastro_form">
+  <div id="cadastro_msg">
   	<fieldset>
   		<legend>Cadastramento de Mensagem no Mural</legend>
-  		Título:<br><input type="text" id="cadastro_msg_title" name="titulo"><br>
-  		Autor:<br><input type="text" id="cadastro_msg_autor" name="autor"><br>
-  		Mensagem:<br><input type="text" id="cadastro_msg_mensagem" name="msg"><br>
-      Id:<br><input type="text" id="cadastro_authentication_id" name="authentication_id"><br>
-      Senha:<br><input type="password" id="cadastro_authentication_password" name="passwd"><br>
-  	<br><input type="submit" value="Enviar">
+  		Título:<br><input type="text" id="cadastro_msg_title" name="titulo" placeholder="Titulo"><br>
+  		Autor:<br><input type="text" id="cadastro_msg_autor" name="autor" placeholder="Autor"><br>
+  		Mensagem:<br><input type="text" id="cadastro_msg_mensagem" name="msg" placeholder="Mensagem"><br>
+      Id:<br><input type="text" id="cadastro_authentication_id" placeholder="UserId"><br>
+      Senha:<br><input type="password" id="cadastro_authentication_password" placeholder="Password"><br>
+      <input src="cliente.js" type="button" onclick="submitMsg()" value="Enviar">
   	</fieldset>
-  </form>
+  </div>
+  <h1>Remoção de Mensagens</h1>
+  <p>Selecione as mensagens que deseja deletar no checkbox</p>
+  <div id="remocao_msg">
+    <fieldset>
+      <legend>Remoção de Mensagens no Mural</legend>
+      Id:<br><input type="text" id="remocao_authentication_id" placeholder="UserId"><br>
+      Senha:<br><input type="password" id="remocao_authentication_password" placeholder="Password"><br>
+      <input src="cliente.js" type="button" onclick="deleteMsgs()" value="Deletar Mensagens">
+    </fieldset>
+  </div>
+  <br><br>
+  <script src="view.js"></script>
+  <div id="listagem"></div>
+    <table>
+      <thead>
+        <tr>
+          <th> <input src="view.js" type="checkbox" onClick="toogleMessageCheckbox();" id="message_checkboxes"/> </th>
+          <th>Título</th> <th>Mensagem</th> <th>Autor</th> <th>Criado em</th>
+        </tr>
+      </thead>
+      <tbody id="table_body">
+
+      </tbody>
+      <tfoot id="table_foot">
+      </tfoot>
+    </table>
+  <script src="cliente.js"></script>
 </body>
 </html>
