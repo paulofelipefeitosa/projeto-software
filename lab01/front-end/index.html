@@ -3,49 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <title>Mural PSOFT</title>
-  <style>
-	table {
-	    font-family: arial, sans-serif;
-	    border-collapse: collapse;
-	    width: 100%;
-	}
-
-	td, th {
-	    border: 1px solid #dddddd;
-	    text-align: left;
-	    padding: 8px;
-	}
-
-	tr:nth-child(even) {
-	    background-color: #dddddd;
-	}
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <small><p><a href="/api">API</a> | <a href="http://bit.ly/muralps">Documentação</a></p></small>
   <hr>
   <h1>Mural Projeto de Software</h1>
-  <h1>Cadastramento de Mensagem</h1>
-  <div id="cadastro_msg">
-  	<fieldset>
-  		<legend>Cadastramento de Mensagem no Mural</legend>
-  		Título:<br><input type="text" id="cadastro_msg_title" name="titulo" placeholder="Titulo"><br>
-  		Autor:<br><input type="text" id="cadastro_msg_autor" name="autor" placeholder="Autor"><br>
-  		Mensagem:<br><input type="text" id="cadastro_msg_mensagem" name="msg" placeholder="Mensagem"><br>
-      Id:<br><input type="text" id="cadastro_authentication_id" placeholder="UserId"><br>
-      Senha:<br><input type="password" id="cadastro_authentication_password" placeholder="Password"><br>
-      <input src="cliente.js" type="button" onclick="submitMsg()" value="Enviar">
-  	</fieldset>
-  </div>
-  <h1>Remoção de Mensagens</h1>
-  <p>Selecione as mensagens que deseja deletar no checkbox</p>
-  <div id="remocao_msg">
-    <fieldset>
-      <legend>Remoção de Mensagens no Mural</legend>
-      Id:<br><input type="text" id="remocao_authentication_id" placeholder="UserId"><br>
-      Senha:<br><input type="password" id="remocao_authentication_password" placeholder="Password"><br>
-      <input src="cliente.js" type="button" onclick="deleteMsgs()" value="Deletar Mensagens">
-    </fieldset>
+  <div class="row">
+    <div id="cadastro_msg" class="column right">
+      <h1>Cadastramento de Mensagem</h1>
+    	<fieldset>
+    		Título:<br><input type="text" id="cadastro_msg_title" name="titulo" placeholder="Titulo"><br>
+    		Autor:<br><input type="text" id="cadastro_msg_autor" name="autor" placeholder="Autor"><br>
+    		Mensagem:<br><input type="text" id="cadastro_msg_mensagem" name="msg" placeholder="Mensagem"><br>
+        Id:<br><input type="text" id="cadastro_authentication_id" placeholder="UserId"><br>
+        Senha:<br><input type="password" id="cadastro_authentication_password" placeholder="Password"><br>
+        <input src="cliente.js" type="button" onclick="submitMsg()" value="Enviar">
+    	</fieldset>
+    </div>
+    <div id="remocao_msg" class="column left">
+      <h1>Remoção de Mensagens</h1>
+      <fieldset>
+        <legend>Selecione as mensagens que deseja deletar no checkbox</legend>
+        Id:<br><input type="text" id="remocao_authentication_id" placeholder="UserId"><br>
+        Senha:<br><input type="password" id="remocao_authentication_password" placeholder="Password"><br>
+        <input src="cliente.js" type="button" onclick="deleteMsgs()" value="Deletar Mensagens">
+      </fieldset>
+    </div>
   </div>
   <br><br>
   <script src="view.js"></script>
@@ -63,6 +47,7 @@
       <tfoot id="table_foot">
       </tfoot>
     </table>
+
   <script src="cliente.js"></script>
 </body>
 </html>
