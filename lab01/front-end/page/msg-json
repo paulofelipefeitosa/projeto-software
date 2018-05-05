@@ -1,0 +1,7 @@
+author:"Dalton"
+created_at:"2018-04-28T22:18:34.351Z"
+frontend:"dalton1"
+id:1
+msg:"O novo frontend exemplo do site usa a mesma API REST já implementada. A diferença está no tratamento visual, com melhor html, css e ordenação dos dados."
+title:"Novo frontend"
+url:"http://150.165.85.16:9900/api/msgs/1"

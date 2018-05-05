@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mural PSOFT</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <small><p><a href="/api">API</a> | <a href="http://bit.ly/muralps">Documentação</a></p></small>
+  <hr>
+  <h1>Mural Projeto de Software</h1>
+  <div class="row">
+    <div id="cadastro_msg" class="column right">
+      <h1>Cadastramento de Mensagem</h1>
+    	<fieldset>
+    		Título:<br><input type="text" id="cadastro_msg_title" name="titulo" placeholder="Titulo"><br>
+    		Autor:<br><input type="text" id="cadastro_msg_autor" name="autor" placeholder="Autor"><br>
+    		Mensagem:<br><input type="text" id="cadastro_msg_mensagem" name="msg" placeholder="Mensagem"><br>
+        <input src="cliente.js" type="button" onclick="submitMsg()" value="Enviar">
+    	</fieldset>
+    </div>
+    <div id="remocao_msg" class="column left">
+      <h1>Remoção de Mensagens</h1>
+      <fieldset>
+        <legend>Selecione as mensagens que deseja deletar no checkbox</legend>
+        <input src="cliente.js" type="button" onclick="deleteMsgs()" value="Deletar Mensagens">
+      </fieldset>
+    </div>
+  </div>
+  <br><br>
+  <script src="view.js"></script>
+  <div id="listagem">
+    <table>
+      <thead>
+        <tr>
+          <th> <input src="view.js" type="checkbox" onClick="toogleMessageCheckbox();" id="message_checkboxes"/> </th>
+          <th>Título</th> <th>Mensagem</th> <th>Autor</th> <th>Criado em</th>
+        </tr>
+      </thead>
+      <tbody id="table_body">
+
+      </tbody>
+      <tfoot id="table_foot">
+      </tfoot>
+    </table>
+  </div>
+  <script src="cliente.js" onload="getMsgs();"></script>
+</body>
+</html>

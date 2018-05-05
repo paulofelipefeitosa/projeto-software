@@ -1,0 +1,128 @@
+const listagem_view = document.getElementById('table_body');
+const backendURI = 'http://150.165.85.16:9900';
+const mensagens = [];
+
+var username = '';
+var password = '';
+
+function update_view() {
+	mensagens.sort(function (a, b) {
+		if(a.created_at > b.created_at) {
+			return -1;
+		} else if(a.created_at < b.created_at) {
+			return 1;
+		}
+		return 0;
+	})
+  const items = mensagens.map(e => `<tr> <td> <input type="checkbox" name="message_checkbox" value="${e.id}">
+																			</td> <td>${e.title}</td> <td>${e.msg}</td> <td>${e.author}</td>
+																			<td>${e.created_at}</td> </tr>`).join("\n");
+  listagem_view.innerHTML = items;
+}
+
+function submitMsg() {
+	const formTitle = document.getElementById('cadastro_msg_title').value;
+	const formAuthor = document.getElementById('cadastro_msg_autor').value;
+	const formMsg = document.getElementById('cadastro_msg_mensagem').value;
+	console.log(username + " :: " + password);
+	const credential = username + ":" + password;
+	const mensagem = {
+		title: formTitle,
+		author: formAuthor,
+		msg: formMsg,
+		created_at: "Pending",
+		credentials: credential
+	};
+
+	mensagens.push(mensagem);
+	update_view();
+
+	fetch(backendURI + '/api/msgs', {
+		method: "POST",
+		body: JSON.stringify(mensagem)
+	})
+	.then(function (r) {
+		if(r.status == 200 || r.status == 201) {
+			getMsgs();
+		} else {
+			messageIndex = mensagens.indexOf(mensagem);
+			mensagens.splice(messageIndex, 1);
+			mensagem.created_at = "Error: " + r.status;
+			mensagens.push(mensagem);
+			update_view();
+		}
+	})
+}
+
+function getMsgs() {
+	fetch(backendURI + '/api/msgs')
+	.then(r => r.json())
+	.then(data => {
+	    Object.assign(mensagens, data);
+	    update_view();
+	})
+}
+
+function deleteMsgs() {
+	checkboxes = document.getElementsByName('message_checkbox');
+	console.log(username + " :: " + password);
+	const credential = username + ":" + password;
+	body_message = {
+		credentials: credential
+	}
+
+	for(var i = 0, n = checkboxes.length; i < n; i++) {
+		if(checkboxes[i].checked) {
+			messageId = checkboxes[i].value;
+			message = getMessageById(messageId);
+
+			if(message.frontend == formUserId) {
+				fetch(backendURI + '/api/msgs/' + message.id, {
+					method: "DELETE",
+					body: JSON.stringify(body_message)
+				}).then(function (r) {
+					messageIndex = mensagens.indexOf(message);
+					mensagens.splice(messageIndex, 1);
+					if(r.status == 200) {
+						message.created_at = "Deleted";
+					} else {
+						message.created_at = "Error in Delete: " + r.status;
+					}
+					mensagens.push(message);
+					update_view();
+				})
+			}
+		}
+  }
+}
+
+function getMessageById(messageId) {
+	for(var i = 0, n = mensagens.length; i < n; i++) {
+		if(messageId == mensagens[i].id) {
+			return mensagens[i];
+		}
+	}
+}
+
+function login() {
+	username = document.getElementById('authentication_username').value;
+	fetch(backendURI + '/api/frontends')
+	.then(r => r.json())
+	.then(function (usersNames) {
+		if(arrayContainsElement(usersNames, username)) {
+			password = document.getElementById('authentication_password').value;
+			window.location.replace("page/");
+		} else {
+			alert("Authentication Failed");
+		}
+	})
+}
+
+function arrayContainsElement(array, element) {
+	for(var i = 0, n = array.length; i < n; i++) {
+		if(element == array[i]) {
+			return true;
+		}
+	}
+	return false;
+}
