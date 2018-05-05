@@ -1,53 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Mural PSOFT</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <small><p><a href="/api">API</a> | <a href="http://bit.ly/muralps">Documentação</a></p></small>
-  <hr>
-  <h1>Mural Projeto de Software</h1>
-  <div class="row">
-    <div id="cadastro_msg" class="column right">
-      <h1>Cadastramento de Mensagem</h1>
-    	<fieldset>
-    		Título:<br><input type="text" id="cadastro_msg_title" name="titulo" placeholder="Titulo"><br>
-    		Autor:<br><input type="text" id="cadastro_msg_autor" name="autor" placeholder="Autor"><br>
-    		Mensagem:<br><input type="text" id="cadastro_msg_mensagem" name="msg" placeholder="Mensagem"><br>
-        Id:<br><input type="text" id="cadastro_authentication_id" placeholder="UserId"><br>
-        Senha:<br><input type="password" id="cadastro_authentication_password" placeholder="Password"><br>
-        <input src="cliente.js" type="button" onclick="submitMsg()" value="Enviar">
-    	</fieldset>
-    </div>
-    <div id="remocao_msg" class="column left">
-      <h1>Remoção de Mensagens</h1>
-      <fieldset>
-        <legend>Selecione as mensagens que deseja deletar no checkbox</legend>
-        Id:<br><input type="text" id="remocao_authentication_id" placeholder="UserId"><br>
-        Senha:<br><input type="password" id="remocao_authentication_password" placeholder="Password"><br>
-        <input src="cliente.js" type="button" onclick="deleteMsgs()" value="Deletar Mensagens">
-      </fieldset>
-    </div>
-  </div>
-  <br><br>
-  <script src="view.js"></script>
-  <div id="listagem"></div>
-    <table>
-      <thead>
-        <tr>
-          <th> <input src="view.js" type="checkbox" onClick="toogleMessageCheckbox();" id="message_checkboxes"/> </th>
-          <th>Título</th> <th>Mensagem</th> <th>Autor</th> <th>Criado em</th>
-        </tr>
-      </thead>
-      <tbody id="table_body">
+<html>
+	<head>
+		<title>Mural PSOFT</title>
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		<script src="page/cliente.js"></script>
+	  <div class="container">
+			<div class="imgcontainer">
+				<img src="img.jpeg" alt="Avatar" class="avatar">
+			</div>
+	    <label for="uname"><b>Username</b></label> <br>
+	    <input type="text" id="authentication_username" placeholder="Enter Username" name="uname" required> <br>
 
-      </tbody>
-      <tfoot id="table_foot">
-      </tfoot>
-    </table>
+	    <label for="psw"><b>Password</b></label> <br>
+	    <input type="password" id="authentication_password" placeholder="Enter Password" name="psw" required> <br>
 
-  <script src="cliente.js"></script>
-</body>
+	    <button type="submit" src="page/cliente.js" onclick="login();">Login</button>
+	  </div>
+	</body>
 </html>
