@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Mural</title>
+  <link rel="stylesheet" type="text/css" href="app.css">
+</head>
+<body ng-app="mural">
+  <div ng-controller="AppCtrl as vm">
+    <h1>Mural</h1>
+    <p>{{vm.msg}}</p>
+    <p>comprimento msg: {{vm.msg.length}}</p>
+    <p>msg: <input type="text" ng-model="vm.msg"></p>
+    <p>{{vm.dado}}</p>
+  </div>
+
+  <div ng-controller="UserCtrl as vm">
+    <h1>User</h1>
+    <p>{{vm.age}}</p>
+    <p>{{vm.height}}</p>
+  </div>
+
+  <div ng-controller="MensagensCtrl as vm">
+    <h1>mensagens</h1>
+    <p>número de mensagens: {{vm.mensagens.length}}</p>
+    <div class="msg" ng-repeat="msg in vm.mensagens">
+      <div class="msg-texto">{{msg.texto}}</div>
+      <div class="msg-autor">{{msg.autor}}</div>
+    </div>
+  </div>
+
+  <!-- Angular JS -->
+  <script src="angular.min.js"></script>
+
+  <!-- Aplicação -->
+  <script src="app.js"></script>
+  <script src="app-controller.js"></script>
+  <script src="mensagens-controller.js"></script>
+  
+</body>
+</html>

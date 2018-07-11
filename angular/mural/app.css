@@ -1,0 +1,19 @@
+body {
+    background: lightgreen;
+    padding: 20px;
+    border: 1px solid blue;
+}
+.msg {
+  margin: 10px 0 10px 0;
+  border: 1px solid #aaa;
+  background: #cfc;
+  border-radius: 8px;
+  padding: 10px;
+}
+.msg-texto {
+  color: #088;
+}
+.msg-autor {
+  color: gray;
+  font-size: 85%;
+}
